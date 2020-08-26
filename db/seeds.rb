@@ -7,3 +7,5 @@
     user_id: "id_#{f}"
   )
 end
+
+puts "Created 3 articles"
