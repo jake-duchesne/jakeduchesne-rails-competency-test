@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<div class="col-md-8 blog-main">
-    <h2><%= @article.title %></h2>
 
-    <strong>Username:</strong>
-    <%= @article.username %>
+    <div class="col-md-8 blog-main">
+        <h2><%= @article.title %></h2>
 
-    <strong>User:</strong>
-    <%= @article.user_id %>
+        <strong>Username:</strong>
+        <%= @article.username %>
 
-    <strong>Category:</strong>
-    <%= @article.category %>
+        <strong>User:</strong>
+        <%= @article.user_id %>
 
-    <%= link_to 'Edit', edit_article_path(@article) if logged_in?(:editor) %>
+        <strong>Category:</strong>
+        <%= @article.category %>
 
-    <p><%= @article.body %></p>
-    <%= link_to 'Back', articles_path %>
-</div>
+        <%= link_to 'Edit', edit_article_path(@article) if logged_in?(:editor) %>
+
+        <p><%= @article.body %></p>
+        <%= link_to 'Back', articles_path %>
+    </div>
