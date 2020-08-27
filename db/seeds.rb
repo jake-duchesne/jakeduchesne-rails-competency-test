@@ -2,9 +2,9 @@
   Article.create!(
     title: "Article #{f}",
     body: "Some content for #{f}",
-    category: "Category #{f}",
-    username: "Submitted by: #{f}",
-    user_id: "id_#{f}"
+    category: "Category#{f}",
+    username: "user#{f}",
+    user_id: "#{f}#{f+1}"
   )
 end
 
