@@ -4,15 +4,15 @@
         <%= distance_of_time_in_words(article.created_at, Time.now) %> ago
     </p>
 
+    <p>
+        <%= article.body %>
+    </p>
+
     <% if logged_in?(:editor) %>
     <p class="blog-post-meta">
         <%= link_to 'Edit', edit_article_path(article) %> /
         <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?' } %>
     </p>
     <% end %>
-
-    <p>
-        <%= article.body %>
-    </p>
 
 </div>

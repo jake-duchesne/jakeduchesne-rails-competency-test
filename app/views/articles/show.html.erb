@@ -4,14 +4,8 @@
     <div class="col-md-8 blog-main">
         <h2><%= @article.title %></h2>
 
-        <strong>Username:</strong>
-        <%= @article.username %>
-
         <strong>User:</strong>
         <%= @article.user_id %>
-
-        <strong>Category:</strong>
-        <%= @article.category %>
 
         <%= link_to 'Edit', edit_article_path(@article) if logged_in?(:editor) %>
 

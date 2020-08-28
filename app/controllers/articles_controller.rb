@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:show]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :ownership, only: [:edit, :update, :destroy]
+  # before_action :set_category, only: [:show]
   access  all:            [:show, :index], 
           user: {except:  [:destroy, :new, :create, :update, :edit]},
-          editor:         [:create, :delete, :edit],
-          site_admin:     [:all]
+          editor:         [:destroy, :new, :create, :delete, :edit],
+          admin:          :all
 
   # GET /articles
   # GET /articles.json
@@ -71,15 +73,25 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
+    
+    # def set_category
+    #   @category = Category.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :body, :category, :username, :user_id)
+      params.require(:article).permit(:title, :body, :category_id, :user_id)
     end
 
     def require_login
-      if guest_user
-        redirect_to new_user_registration_path, notice: "Please login to view that page" if request.original_fullpath != new_user_registration_path
+      if current_user.is_a?(GuestUser)
+        redirect_to new_user_registration_path, notice: "Please login to view that page"
       end
     end
+
+    def ownership
+      # current_user.articles.find(params[:id])
+      redirect_to articles_path, notice: "THIS IS NOT YOUR ARTICLE" unless @article.user_id == current_user.id
+    end
+       
 end
