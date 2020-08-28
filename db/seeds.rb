@@ -14,6 +14,13 @@ end
 
 puts "Created Sports Category"
 
+1.times do |f|
+  Category.create!(
+    title: "Coding"
+  )
+end
+
+puts "Created Coding Category"
 
 3.times do |f|
   Article.create!(
