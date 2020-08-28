@@ -26,7 +26,6 @@ puts "Created Coding Category"
   Article.create!(
     title: "Article #{f}",
     body: "Some content for #{f}",
-    username: "user#{f}",
     user_id: "#{f}#{f+1}",
     category_id: Category.last.id
   )

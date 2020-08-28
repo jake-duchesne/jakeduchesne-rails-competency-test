@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :require_login, only: [:show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :ownership, only: [:edit, :update, :destroy]
-  # before_action :set_category, only: [:show]
+  before_action :set_category, only: [:show]
   access  all:            [:show, :index], 
           user: {except:  [:destroy, :new, :create, :update, :edit]},
           editor:         [:destroy, :new, :create, :delete, :edit],
@@ -74,9 +74,10 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
     
-    # def set_category
-    #   @category = Category.find(params[:id])
-    # end
+    def set_category
+      @articles = Article.all
+      @article_list = @articles.group_by{ |t| t.category.title }
+    end
 
     # Only allow a list of trusted parameters through.
     def article_params
