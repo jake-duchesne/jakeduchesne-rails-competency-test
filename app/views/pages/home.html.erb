@@ -1,35 +1,38 @@
-<%= link_to 'Article Index', articles_path %>
-<div class="container">
-    <div class="p-2">
-        <h1>Article App</h1>
-    </div>
-    <div class="d-flex justify-content-center">
+<p><%= render 'shared/article_nav' %></p>
+    <div class="container">
+        <strong>
+            <%= link_to 'Article Index', articles_path %>
+        </strong>
+        <div class="p-2">
+            <h1>Article App</h1>
+        </div>
+        <div class="d-flex justify-content-center">
 
 
 
-        <%
+            <%
 =begin%>
-        <% @category.each do |category| %>
-        <h1><%= category.title %></h1>
-        <%= category.articles.last(3) %>
-        <% end %>
-        <%
+            <% @category.each do |category| %>
+            <h1><%= category.title %></h1>
+            <%= category.articles.last(3) %>
+            <% end %>
+            <%
 =end%>
 
-        <div class="d-flex flex-row">
-            <% @article_list.each do |category, article_items| %>
-            <div class="p-2">
-                <h1><%= category %></h1>
-                <% article_items.last(3).each do |article_item| %>
-                <div>
-                    <strong><%= article_item.title %></strong>
-                    <p><%= article_item.body %></p>
-                </div>
+            <div class="d-flex flex-row">
+                <% @article_list.each do |category, article_items| %>
+                <div class="p-2">
+                    <h1><%= category %></h1>
+                    <% article_items.last(3).each do |article_item| %>
+                    <div>
+                        <strong><%= article_item.title %></strong>
+                        <p><%= article_item.body %></p>
+                    </div>
 
+                    <% end %>
+                </div>
                 <% end %>
             </div>
-            <% end %>
         </div>
-    </div>
 
-</div>
+    </div>
