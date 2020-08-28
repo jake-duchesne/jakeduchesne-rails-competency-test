@@ -1,37 +1,37 @@
 <%= form_with(model: article, local: true) do |form| %>
-  <% if article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<% if article.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-      <ul>
+    <ul>
         <% article.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li><%= message %></li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+</div>
+<% end %>
 
-  <div class="field">
+<div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :body %>
     <%= form.text_area :body %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :category_id %>
-    <%= form.number_field :category_id %>
-  </div>
+    <%= form.select(:category_id, Category.all.collect {|c| [ c.title, c.id ] }, {prompt: 'Select category'}, class:"form-control") %>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id, :value => current_user.id, :readonly => true %>
-  </div>
+</div>
 
-  <div class="actions">
+<div class="actions">
     <%= form.submit %>
-  </div>
+</div>
 <% end %>
